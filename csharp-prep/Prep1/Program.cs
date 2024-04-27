@@ -4,7 +4,7 @@ class Program
 {
     static string Uppercase(string pizza)
     {
-        return pizza.Substring(0,1).ToUpper() + pizza.Substring(1).ToLower();
+        return string.Join(' ', pizza.Split(' ').Select(s => char.ToUpper(s[0]) + s[1..].ToLower()));
     }
     static void Main(string[] args)
     {
