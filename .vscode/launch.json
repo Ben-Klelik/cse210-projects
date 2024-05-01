@@ -17,6 +17,19 @@
         },
 
         {
+            "name": "Test Project",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-sandbox-Test-Proj",
+            "program": "${workspaceFolder}/sandbox/Test-Proj/bin/Debug/net8.0/Test-Proj.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/sandbox/Test-Proj",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "stopAtEntry": false
+        },
+
+        {
             "name": "C# Prep 1",
             "type": "coreclr",
             "request": "launch",
