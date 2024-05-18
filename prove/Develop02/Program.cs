@@ -24,12 +24,12 @@ class Program
     {
         Journal journal = new();
         AddPrompts(journal);
-        int input_num;
+        int inputNum;
         do
         {
             DisplayMenu();
-            input_num = int.Parse(Console.ReadLine());
-            switch (input_num)
+            inputNum = int.Parse(Console.ReadLine());
+            switch (inputNum)
             {
                 case 1:
                     journal.NewEntry();
@@ -37,9 +37,9 @@ class Program
                 case 2:
                     Console.WriteLine($"Select an entry from the following list:\n(0) exit");
                     journal.ListEntries();
-                    int list_input_num = int.Parse(Console.ReadLine());
-                    if (list_input_num != 0)
-                        Console.WriteLine($"{journal._entries[list_input_num - 1]}\n-------------\n");
+                    int listInputNum = int.Parse(Console.ReadLine());
+                    if (listInputNum != 0)
+                        Console.WriteLine($"{journal._entries[listInputNum - 1]}\n-------------\n");
                     break;
                 case 3:
                     Console.WriteLine($"Saving...");
@@ -55,6 +55,6 @@ class Program
                     Console.WriteLine($"invalid input");
                     break;
             }
-        } while (!(input_num == 0 && (!journal._isUnsaved || journal.ConfirmLossOfUnsavedChanges())));
+        } while (!(inputNum == 0 && (!journal._isUnsaved || journal.ConfirmLossOfUnsavedChanges())));
     }
 }
