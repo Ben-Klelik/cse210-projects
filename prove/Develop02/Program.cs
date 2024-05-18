@@ -39,7 +39,7 @@ class Program
                     journal.ListEntries();
                     int listInputNum = int.Parse(Console.ReadLine());
                     if (listInputNum != 0)
-                        Console.WriteLine($"{journal._entries[listInputNum - 1]}\n-------------\n");
+                        Console.WriteLine($"{journal._entries[listInputNum - 1]}-------------\n");
                     break;
                 case 3:
                     Console.WriteLine($"Saving...");
