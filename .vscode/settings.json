@@ -1,4 +1,6 @@
 {
   "autoHide.hideSideBarsOnDebug": false,
-  "autoHide.hidePanelOnDebug": false
+  "autoHide.hidePanelOnDebug": false,
+  "editor.tabSize": 4,
+  "cmake.configureOnOpen": false
 }
