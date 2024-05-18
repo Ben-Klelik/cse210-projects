@@ -55,9 +55,9 @@ class Journal
 
         if (!File.Exists(filepath))
         {
-            await using (FileStream file = File.Create(filepath)){}
+            await using (FileStream file = File.Create(filepath)) { }
         }
-        
+
         using StreamWriter journalFile = new(filepath);
         foreach (var entry in _entries)
         {
@@ -108,7 +108,7 @@ class Journal
     private void DisplayListOfJournals(string[] list)
     {
         int i = 0;
-        foreach(string fileName in list)
+        foreach (string fileName in list)
         {
             Console.WriteLine($"({i}) {fileName} with {File.ReadAllLines(fileName).Length} entries.");
             i++;
