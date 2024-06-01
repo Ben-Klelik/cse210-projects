@@ -9,4 +9,8 @@ class Reference
         _chapter = chapter;
         _verse = verse;
     }
+    public override string ToString()
+    {
+        return $"{_book} {_chapter}:{_verse}";
+    }
 }

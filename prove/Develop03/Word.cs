@@ -1,4 +1,7 @@
-class Word
+using System.Text;
+using System.Text.RegularExpressions;
+
+partial class Word
 {
     string _text;
     bool _isHidden;
@@ -10,6 +13,10 @@ class Word
     {
         _isHidden = true;
     }
+    public void Unhide()
+    {
+        _isHidden = false;
+    }
     public bool GetIsHidden()
     {
         return _isHidden;
@@ -17,7 +24,12 @@ class Word
     public override string ToString()
     {
         if (_isHidden)
-            return new string ('_', _text.Length);
+        {
+            return EachLetter().Replace(_text, "_");
+        }
         return _text;
     }
+
+    [GeneratedRegex("[A-z]")]
+    private static partial Regex EachLetter();
 }
