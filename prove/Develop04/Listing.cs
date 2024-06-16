@@ -1,8 +1,8 @@
-class Listing : Activity
+class Listing(string title, string description) : Activity(title, description)
 {
-    public Listing(string title, string description)
-    : base (title, description)
+    public override void Start()
     {
+        base.Start();
 
         _prompts = [
             "What are you wearing?",
@@ -15,10 +15,6 @@ class Listing : Activity
             "What could you not part with today?",
             "What made your taste buds happy today?"
         ];
-    }
-    public override void Start()
-    {
-        base.Start();
 
         Console.WriteLine("Prepare to write down your responses to the upcoming prompts.");
         _delayAnimation.Start(5, 3.0);

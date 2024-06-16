@@ -1,4 +1,4 @@
-class Reflection : Activity
+class Reflection(string title, string description) : Activity(title, description)
 {
     private string[] _basePrompt = [
         "Think of a time you talked to someone",
@@ -6,9 +6,10 @@ class Reflection : Activity
         "Think of a time you touched someone",
         "Think of a time you judged someone",
     ];
-    public Reflection(string title, string description)
-    : base (title, description)
+
+    public override void Start()
     {
+        base.Start();
 
         _prompts = [
             "What were you thinking while you did that?",
@@ -17,10 +18,6 @@ class Reflection : Activity
             "How did you feel after you did this?",
             "How do you feel after thinking back to that time?",
         ];
-    }
-    public override void Start()
-    {
-        base.Start();
 
         Console.WriteLine("Consider the following prompt, then press enter when you have something in mind.\n");
 
