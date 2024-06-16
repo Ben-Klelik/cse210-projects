@@ -13,7 +13,7 @@ class Menu
         int i = 1;
         foreach (string option in _options)
         {
-            Console.WriteLine($"({i}){option}");
+            Console.WriteLine($"   ({i}) {option}");
             i++;
         }
     }
@@ -22,6 +22,7 @@ class Menu
         int input;
         do
         {
+            Console.Write("Choice: ");
             input = int.Parse(Console.ReadLine()) - 1;
             if (input < 0 || input >= _options.Length)
                 Console.WriteLine($"Number must be between 1 and {_options.Length}");
