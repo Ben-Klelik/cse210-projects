@@ -22,3 +22,4 @@ The details of my work with each project will be added to the lines below.
 * `prove 2` file management & class object creation
 * `prove 3` string manipulation & variable encapsulation
 * `prove 4` inheritance
+* `prove 5` polymorphism (abstract class)
