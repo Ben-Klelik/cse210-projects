@@ -3,9 +3,9 @@ using System.Collections;
 sealed class ItemManager
 {
     Dictionary<int, List<Item>> _itemPools = [];
-    static ItemManager Instance { get; } = new ItemManager();
+    public static ItemManager Instance { get; } = new ItemManager();
     // public static ItemManager Instance { get; } = new ItemManager();
-    public enum ITEMTYPE {Weapon, Armor, Consumable}
+    
     
     // static ItemManager()
     // {
@@ -24,7 +24,7 @@ sealed class ItemManager
         }
     }
 
-    public Item GetRandomItemInLevelWithType(int level, ITEMTYPE type)
+    public Item GetRandomItemInLevelWithType(int level, Item.TYPE type)
     {
         if(_itemPools.ContainsKey(level))
             return null;
@@ -33,7 +33,7 @@ sealed class ItemManager
 
         foreach(Item item in _itemPools[level])
         {
-            if(item.type == type)
+            if(item.GetItemType() == type)
                 possibilities.Add(item);
         }
 
