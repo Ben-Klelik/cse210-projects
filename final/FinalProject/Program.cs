@@ -31,7 +31,7 @@ class Program
 
     static void MainGameLoop()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     static void DefineEnemies()
