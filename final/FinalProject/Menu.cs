@@ -3,7 +3,7 @@ using System.Dynamic;
 class Menu
 {
     string _menuTitle;
-string _inputPrompt;
+    string _inputPrompt;
     List<string> _options = [];
     List<string> _optionNames = [];
 
@@ -29,17 +29,24 @@ string _inputPrompt;
     public void Display()
     {
         Console.WriteLine(_menuTitle);
-        int i = 0;
+        int i = 1;
         foreach (var option in _options)
         {
             Console.WriteLine($"({i}) {option}");
+            i++;
         }
-        Console.Write(_inputPrompt);
+        Console.Write(GetInputPrompt());
     }
 
     public int SelectByNum()
     {
-        return int.Parse(Console.ReadLine());
+        int output;
+        
+        while (!(int.TryParse(Console.ReadLine(), out output) & output > 0 & output <= _options.Count))
+        {
+            Console.Write(GetInputPrompt());
+        }
+        return output - 1;
     }
 
     public string GetNameFromNum(int num)

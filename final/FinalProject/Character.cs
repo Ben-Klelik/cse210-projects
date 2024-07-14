@@ -1,8 +1,7 @@
-using System.Data;
-using System.Security.Cryptography.X509Certificates;
 
 abstract class Character
 {
+    protected string _name;
     protected int _level = 0;
     protected int _baseHealth;
     protected int _health;
@@ -75,7 +74,13 @@ abstract class Character
     public Event swapEquipment;
     protected Event levelUp;
 
-    public Character(){}
+    public Character()
+    {
+        _baseHealth = 10000;
+        _health = 100000;
+        _baseArmor = 10000;
+        _baseStrength = 10000;
+    }
 
     public double ApplyBuffsToStat(double amount, BUFF_STAT stat)
     {
@@ -100,5 +105,8 @@ abstract class Character
         Console.WriteLine("Display equipment not implemented");
     }
 
-    
+    public void DisplayCharacterInfo()
+    {
+        Console.WriteLine($"Name: {_name}\nHealth: {_health}\nBase Health: {_baseHealth}\nBase Armor: {_baseArmor}\nBuffed Armor: {ApplyBuffsToStat(_baseArmor, BUFF_STAT.Defense)}\nBase Strength: {_baseStrength}\nBuffed Strength: {ApplyBuffsToStat(_baseStrength, BUFF_STAT.Strength)}");
+    }
 }

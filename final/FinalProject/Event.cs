@@ -11,7 +11,7 @@ class Event
 
     public void Start()
     {
-        _start();
+        while(_start()); // if the event returns true, it simply restarts the event
     }
 
     public void Describe(string description)

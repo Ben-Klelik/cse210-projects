@@ -3,24 +3,28 @@ using System;
 class Program
 {
 
-    Enemy dino;
-    Enemy goblin;
+    static int floor = 1;
 
-    Menu mainMenu;
-    Menu characterMenu;
+    static Character character = new Barbarian();
 
-    Event gameStartEvent;
-    Event enemyEncounterEvent;
-    Event itemSwapEvent;
+    static Enemy dino;
+    static Enemy goblin;
 
-    Room emptyRoomEvent;
-    Room enemyRoomEvent;
-    Room specialRoomEvent;
-    Room staircaseRoomEvent;
+    static Menu mainMenu;
+    static Menu characterMenu;
+    static Menu emptyRoomMenu;
+
+    static Event gameStartEvent;
+    static Event enemyEncounterEvent;
+    static Event itemSwapEvent;
+
+    static Room emptyRoomEvent;
+    static Room enemyRoomEvent;
+    static Room specialRoomEvent;
+    static Room staircaseRoomEvent;
 
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello FinalProject World!");
         DefineEnemies();
         DefineItems();
         DefineBasicMenus();
@@ -31,7 +35,15 @@ class Program
 
     static void MainGameLoop()
     {
+        Demo();
         // throw new NotImplementedException();
+    }
+
+    static void Demo()
+    {
+        Console.WriteLine("");
+        emptyRoomEvent.Start();
+        Console.WriteLine("End of demo");
     }
 
     static void DefineEnemies()
@@ -46,7 +58,10 @@ class Program
     
     static void DefineBasicMenus()
     {
-        
+        emptyRoomMenu = new Menu("How shall you proceed?");
+        emptyRoomMenu.AddOption("Move to the next room", "move");
+        emptyRoomMenu.AddOption("Inspect your character","stats");
+        emptyRoomMenu.AddOption("Consume your consumable","consumable");
     }
     
     static void DefineEvents()
@@ -56,7 +71,52 @@ class Program
     
     static void DefineRooms()
     {
-        
+        emptyRoomEvent = new Room(() => {
+            Console.WriteLine("You enter an empty room.");
+            emptyRoomMenu.Display();
+            string choice = emptyRoomMenu.GetNameFromNum(emptyRoomMenu.SelectByNum());
+            if (choice.Equals("move"))
+            {
+                staircaseRoomEvent.Start();
+            }
+            else if (choice.Equals("stats"))
+            {
+                character.DisplayCharacterInfo();
+                return true;
+            }
+            else if (choice.Equals("consumable"))
+            {
+                Console.WriteLine("You do not have any consumables right now");
+                return true;
+            }
+            return false;
+        });
+
+
+        staircaseRoomEvent = new Room(() => {
+            Console.WriteLine("You have found a staircase.");
+            Console.WriteLine("Will you ascend the staircase? (y/n)");
+            bool willAscend = Console.ReadLine().ToLower().Equals("y");
+            if (willAscend)
+            {
+                floor++;
+                Console.WriteLine($"You have ascended the staircase and are now on floor {floor}");
+            }
+            else
+            {
+                Console.WriteLine("You leave the room without doing anything");
+            }
+            
+            if (floor == 5)
+            {
+                Console.WriteLine("Since you have reached floor 5 you have won! (boss not implemented yet)");
+            }
+            else
+            {
+                emptyRoomEvent.Start();
+            }
+            return false;
+        });
     }
     
 }
