@@ -7,8 +7,7 @@ class Program
 
     static Character character = new Barbarian();
 
-    static Enemy dino;
-    static Enemy goblin;
+    static List<Enemy> enemies = [];
 
     static Menu mainMenu;
     static Menu characterMenu;
@@ -22,6 +21,8 @@ class Program
     static Room enemyRoomEvent;
     static Room specialRoomEvent;
     static Room staircaseRoomEvent;
+
+    static List<Room> bagBase = [];
 
     static void Main(string[] args)
     {
@@ -48,7 +49,8 @@ class Program
 
     static void DefineEnemies()
     {
-        
+        enemies.Add(new Enemy(1, "Goblin", "The Goblin Smirks", 10, 10, 10, 0.9));
+        enemies.Add(new Enemy(6, "Dinosaur", "The Dino Sits", 100, 10, 15, 1.0));
     }
     
     static void DefineItems()
@@ -115,6 +117,12 @@ class Program
             {
                 emptyRoomEvent.Start();
             }
+            return false;
+        });
+
+
+        enemyRoomEvent = new Room(() => {
+            Console.WriteLine("You have encountered an enemy!");
             return false;
         });
     }
