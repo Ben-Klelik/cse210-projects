@@ -2,9 +2,9 @@ using System.Reflection.Metadata.Ecma335;
 
 class Enemy
 {
-    int _level;
-    string _name;
-    string _attackDescription;
+    int _level; public int GetLevel(){ return _level; }
+    string _name; public string GetName(){ return _name; }
+    string _attackDescription; public string GetAttackDescription(){ return _attackDescription; }
     int _baseHealth; public int GetBaseHealth(){ return _baseHealth; }
     int _health; public int GetHealth(){ return _health; }
     int _baseArmor; public int GetArmor(){ return _baseArmor; }
@@ -48,15 +48,22 @@ class Enemy
         return _hitChance > Random.Shared.NextDouble();
     }
 
-    public void DoDamage(int amount)
+    public int Damage(int amount)
     {
         double k = Math.Exp(_baseArmor);
         double armorMultiplier = 1.0 - k / (1.0 + k);
-        _health -= (int) Math.Max(amount * armorMultiplier, 0);
+        int damageAmount = (int) Math.Max(amount * armorMultiplier, 0);
+        _health -= damageAmount;
+        return damageAmount;
     }
 
     public bool IsDead()
     {
         return _health <= 0;
+    }
+
+    public void DisplayEnemyInfo()
+    {
+        Console.WriteLine($" {_name} Stats\nHealth: {_health}\nArmor: {_baseArmor}\n\nStrength: {_baseStrength}");
     }
 }

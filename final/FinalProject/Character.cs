@@ -2,14 +2,14 @@
 abstract class Character
 {
     protected string _name;
-    protected int _level = 0;
+    protected int _level = 1; public int GetLevel(){ return _level; }
     protected int _baseHealth;
     protected int _health;
     protected int _baseArmor;
     protected int _baseStrength;
     protected Item _armor;
     protected Item _weapon;
-    protected Item _consumable;
+    // protected Item _consumable;
     public enum BUFF_ADD_TYPE {Flat, Multiplier}
     public enum BUFF_STAT {Health, Defense, Strength}
     protected class Buff
@@ -71,8 +71,9 @@ abstract class Character
         //     if (activeBuffs[i].DurationEnded())
         //         activeBuffs.RemoveAt(i);
     }
-    public Event swapEquipment;
-    protected Event levelUp;
+    // public Event swapEquipment;
+    // protected Event levelUp;
+    public Menu BattleOptions = new("What will you do?");
 
     public Character()
     {
@@ -82,7 +83,7 @@ abstract class Character
         _baseStrength = 10000;
     }
 
-    public double ApplyBuffsToStat(double amount, BUFF_STAT stat)
+    public int ApplyBuffsToStat(double amount, BUFF_STAT stat)
     {
         foreach (Buff buff in activeBuffs)
             if (buff.IsStat(stat) && buff.IsAddType(BUFF_ADD_TYPE.Flat))
@@ -92,12 +93,36 @@ abstract class Character
             if (buff.IsStat(stat) && buff.IsAddType(BUFF_ADD_TYPE.Multiplier))
                 amount = buff.ApplyBuffStats(amount);
 
-        return amount;
+        return (int) amount;
     }
 
-    public double GetAttackDamage()
+    public int GetAttackDamage()
     {
         return ApplyBuffsToStat(_weapon.ApplyItemStats(_baseStrength), BUFF_STAT.Strength);
+    }
+
+    public int Damage(int amount)
+    {
+        double armor = _baseArmor;
+        if (_armor.GetStat() == Item.STAT.Defense)
+        {
+            armor = _armor.ApplyItemStats(_baseArmor);
+        }
+        if (_weapon.GetStat() == Item.STAT.Defense)
+        {
+            armor = _weapon.ApplyItemStats(armor);
+        }
+        
+        double k = Math.Exp(armor);
+        double armorMultiplier = 1.0 - k / (1.0 + k);
+        int damageAmount = (int) Math.Max(amount * armorMultiplier, 0);
+        _health -= damageAmount;
+        return damageAmount;
+    }
+
+    public bool IsDead()
+    {
+        return _health <= 0;
     }
 
     public void DisplayEquipment()

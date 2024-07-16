@@ -20,19 +20,21 @@ class Item
 
     public Item(string name, TYPE type, double amount)
     {
-        if (_type == TYPE.Consumable)
-            throw new Exception("Type must be armor or weapon to use this constructor");
-
         _name = name;
         _type = type;
         if (_type == TYPE.Armor)
         {
             _stat = STAT.Defense;
-            _addType = ADDTYPE.Multiplier;
+            _addType = ADDTYPE.Flat;
         }
         else if (_type == TYPE.Weapon)
         {
             _stat = STAT.Strength;
+            _addType = ADDTYPE.Flat;
+        }
+        else if (_type == TYPE.Consumable)
+        {
+            _stat = STAT.Health;
             _addType = ADDTYPE.Flat;
         }
         _amount = amount;
