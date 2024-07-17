@@ -132,6 +132,12 @@ abstract class Character
 
     public void DisplayCharacterInfo()
     {
-        Console.WriteLine($"Name: {_name}\nHealth: {_health}\nBase Health: {_baseHealth}\nBase Armor: {_baseArmor}\nBuffed Armor: {ApplyBuffsToStat(_baseArmor, BUFF_STAT.Defense)}\nBase Strength: {_baseStrength}\nBuffed Strength: {ApplyBuffsToStat(_baseStrength, BUFF_STAT.Strength)}");
+        Console.WriteLine($"Name: {_name}");
+        Console.WriteLine($"Health: {_health}");
+        Console.WriteLine($"Base Health: {_baseHealth}");
+        Console.WriteLine($"Base Armor: {_baseArmor}");
+        Console.WriteLine($"Buffed Armor: {ApplyBuffsToStat(_baseArmor, BUFF_STAT.Defense)}");
+        Console.WriteLine($"Base Strength: {_baseStrength}");
+        Console.WriteLine($"Buffed Strength: {ApplyBuffsToStat(_baseStrength, BUFF_STAT.Strength)}");
     }
 }
