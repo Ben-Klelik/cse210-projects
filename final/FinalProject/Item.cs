@@ -6,10 +6,10 @@ class Item
     private string _name; public string GetName() { return _name; }
     private TYPE _type; public TYPE GetItemType() { return _type; }
     private STAT _stat; public STAT GetStat() { return _stat; }
-    private ADDTYPE _addType;
-    private double _amount;
+    private ADDTYPE _addType; public ADDTYPE GetAddType() { return _addType; }
+    private double _amount; public double GetAmount() { return _amount; }
 
-    public Item(string name, TYPE type, STAT stat, ADDTYPE addType, double amount)
+    public Item(TYPE type, string name, STAT stat, ADDTYPE addType, double amount)
     {
         _name = name;
         _type = type;
@@ -18,7 +18,7 @@ class Item
         _amount = amount;
     }
 
-    public Item(string name, TYPE type, double amount)
+    public Item(TYPE type, string name, double amount)
     {
         _name = name;
         _type = type;

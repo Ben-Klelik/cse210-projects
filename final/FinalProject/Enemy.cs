@@ -1,4 +1,5 @@
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
 
 class Enemy
 {
@@ -50,10 +51,10 @@ class Enemy
 
     public int Damage(int amount)
     {
-        double k = Math.Exp(_baseArmor);
-        double armorMultiplier = 1.0 - k / (1.0 + k);
-        int damageAmount = (int) Math.Max(amount * armorMultiplier, 0);
+        double armorMultiplier = 1 / (1 + Math.Exp(-4 + 0.11 * _baseArmor));
+        int damageAmount = (int) Math.Max(armorMultiplier * amount, 0);
         _health -= damageAmount;
+        // Console.WriteLine($"Enemy takes {amount} base, reduced to {damageAmount}");
         return damageAmount;
     }
 
@@ -64,6 +65,6 @@ class Enemy
 
     public void DisplayEnemyInfo()
     {
-        Console.WriteLine($" {_name} Stats\nHealth: {_health}\nArmor: {_baseArmor}\n\nStrength: {_baseStrength}");
+        Console.WriteLine($" {_name} Stats\nHealth: {_health}\nArmor: {_baseArmor}\nStrength: {_baseStrength}");
     }
 }

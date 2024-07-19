@@ -32,7 +32,7 @@ class Menu
         int i = 1;
         foreach (var option in _options)
         {
-            Console.WriteLine($"({i}) {option}");
+            Console.WriteLine($" ({i}) {option}");
             i++;
         }
         Console.Write(GetInputPrompt());
@@ -85,9 +85,9 @@ class Menu
 
     public int? FindOptionByName(string name)
     {
-        for (int i = 0; i < _options.Count; i++)
+        for (int i = 0; i < _optionNames.Count; i++)
         {
-            if (_options[i].Equals(name))
+            if (_optionNames[i].Equals(name))
                 return i;
         }
         return null;

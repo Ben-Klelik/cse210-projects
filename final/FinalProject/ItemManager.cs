@@ -24,14 +24,30 @@ sealed class ItemManager
         }
     }
 
+    private void ViewPools(int i)
+    {
+        Console.WriteLine($"{i}th item pool");
+        foreach (Item item in _itemPools[i])
+        {
+            Console.WriteLine($":Name:  {item.GetName()}");
+            Console.WriteLine($"Amount:  {item.GetAmount()}");
+            Console.WriteLine($"AddType: {(item.GetAddType() == Item.ADDTYPE.Flat ? "constant" : "multiplier")}");
+            Console.WriteLine($"Stat:    {(item.GetStat() == Item.STAT.Health ? "health" : item.GetStat() == Item.STAT.Defense ? "defense" : "strength")}"); 
+        }
+    }
+
     public Item GetRandomItemInLevelWithType(int level, Item.TYPE type)
     {
-        if(_itemPools.ContainsKey(level))
-            return null;
-
+        List<Item> pool;
+        bool gotValue = _itemPools.TryGetValue(level, out pool);
+        if (!gotValue)
+        {
+            ViewPools(level);
+            throw new Exception("Did not get value");
+        }
         List<Item> possibilities = [];
 
-        foreach(Item item in _itemPools[level])
+        foreach(Item item in pool)
         {
             if(item.GetItemType() == type)
                 possibilities.Add(item);

@@ -5,9 +5,15 @@ class Paladin : Character
         _name = "Paladin";
         _baseHealth = 50;
         _health = 50;
-        _baseArmor = 90;
-        _baseStrength = 10;
-        _weapon = new Item("Pointy Shield", Item.TYPE.Weapon, 10.0);
-        _armor = new Item("Soft Shield", Item.TYPE.Armor, 2.0);
+        _baseArmor = 40;
+        _baseStrength = 3;
+        _weapon = new Item(Item.TYPE.Weapon, "Pointy Shield", 5.0);
+        _armor = new Item(Item.TYPE.Armor, "Soft Shield", 15);
+    }
+
+    protected override void LevelUp()
+    {
+        base.LevelUp();
+        _baseArmor += 3;
     }
 }

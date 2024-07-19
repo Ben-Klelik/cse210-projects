@@ -1,7 +1,10 @@
-[ ] : Implement Consumable Gain, Consumption, and Verify aquisition.
-[ ] : Adjust Equations.
-[ ] : Implement Buffs.
-[ ] : Add 2 more special events
-[ ] : Add swap equipment event
+[x] : Implement Consumable Gain, Consumption, and Verify aquisition. -
+[x] : Adjust Equations.
+[ ] : Implement Buffs. -
+[ ] : Add 2 more special events -
+[x] : Add swap equipment method
 [ ] : Add main menu
-[ ] : Add second character
+[ ] : Add character selection event
+[ ] : Add brief pauses in tastful places -
+[ ] : Fancy level up
+[ ] : Test boss
