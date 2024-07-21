@@ -14,7 +14,6 @@ class RandomBag<T>
     public T TakeOut()
     {
         int rand = Random.Shared.Next(_bag.Count);
-        Console.WriteLine(rand);
         T r = _bag[rand];
         _bag.RemoveAt(rand);
         if (_bag.Count == 0)

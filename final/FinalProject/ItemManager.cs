@@ -32,7 +32,7 @@ sealed class ItemManager
             Console.WriteLine($":Name:  {item.GetName()}");
             Console.WriteLine($"Amount:  {item.GetAmount()}");
             Console.WriteLine($"AddType: {(item.GetAddType() == Item.ADDTYPE.Flat ? "constant" : "multiplier")}");
-            Console.WriteLine($"Stat:    {(item.GetStat() == Item.STAT.Health ? "health" : item.GetStat() == Item.STAT.Defense ? "defense" : "strength")}"); 
+            Console.WriteLine($"Stat:    {(item.GetStat() == Character.STAT.Health ? "health" : item.GetStat() == Character.STAT.Defense ? "defense" : "strength")}"); 
         }
     }
 
